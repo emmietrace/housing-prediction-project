@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Predictor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body>
+    <div class="glass-container">
+        <div class="header">
+            <div class="icon">🏠</div>
+            <h1>Real Estate Estimator</h1>
+            <p>AI-Powered Valuation Model</p>
+        </div>
+
+        <form action="/" method="post" class="prediction-form">
+            <div class="form-grid">
+                
+                <div class="input-group">
+                    <label>Overall Quality (1-10)</label>
+                    <input type="number" name="OverallQual" min="1" max="10" placeholder="e.g., 7" required>
+                    <span class="tooltip">Material & finish quality</span>
+                </div>
+
+                <div class="input-group">
+                    <label>Living Area (sq ft)</label>
+                    <input type="number" name="GrLivArea" placeholder="e.g., 1500" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Basement Area (sq ft)</label>
+                    <input type="number" name="TotalBsmtSF" placeholder="e.g., 800" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Garage Capacity</label>
+                    <input type="number" name="GarageCars" min="0" max="5" placeholder="Cars" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Bathrooms</label>
+                    <input type="number" name="FullBath" min="0" max="5" placeholder="Full baths" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Year Built</label>
+                    <input type="number" name="YearBuilt" min="1800" max="2025" placeholder="e.g., 2010" required>
+                </div>
+
+            </div>
+
+            <button type="submit" class="submit-btn">
+                Predict Value <span>→</span>
+            </button>
+        </form>
+
+        {% if prediction_text %}
+        <div class="result-card" id="result">
+            <h3>Estimated Market Value</h3>
+            <div class="price-tag">{{ prediction_text }}</div>
+        </div>
+        {% endif %}
+    </div>
+
+    <script>
+        if(document.getElementById('result')) {
+            document.getElementById('result').scrollIntoView({behavior: "smooth"});
+        }
+    </script>
+</body>
+</html>
